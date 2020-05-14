@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            String responseData = DataScraper.getResponse("https://reqres.in/api/users?page=2");
+            String responseData = DataScraper.getResponseFromPage(1);
 
             User[] usersToInsert = DataScraper.getUsersFromResponse(responseData);
             DatabaseHelper dbHelper = new DatabaseHelper();

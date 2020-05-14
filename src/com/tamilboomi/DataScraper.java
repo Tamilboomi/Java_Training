@@ -75,4 +75,7 @@ public class DataScraper {
         fileToWrite.close();
     }
 
+    public static String getResponseFromPage(int pageNumber) throws Exception {
+        return DataScraper.getResponse("https://reqres.in/api/users?page=" + pageNumber);
+    }
 }
