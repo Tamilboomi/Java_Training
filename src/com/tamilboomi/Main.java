@@ -1,11 +1,25 @@
 package com.tamilboomi;
 
+import com.tamilboomi.models.User;
+
 public class Main {
 
     public static void main(String[] args) {
         try {
             String responseData = DataScraper.getResponse("https://reqres.in/api/users?page=2");
-            DataScraper.writeToFile(DataScraper.getReportTextFromResponse(responseData),"file.html");
+
+            User[] usersToInsert = DataScraper.getUsersFromResponse(responseData);
+            DatabaseHelper dbHelper = new DatabaseHelper();
+
+            // for (int i=0;i<usersToInsert.length;i++) { <-- This can also be used to access the data
+            for (User user : usersToInsert) {
+                dbHelper.executeSQLQuery(
+                        "INSERT INTO users values(" + user.getId()
+                                + ",' " + user.getName()
+                                + "','" + user.getEmail()
+                                + "');");
+            }
+            dbHelper.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

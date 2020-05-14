@@ -1,5 +1,6 @@
 package com.tamilboomi;
 
+import com.tamilboomi.models.User;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -47,6 +48,24 @@ public class DataScraper {
             sb.append("--------------------------------------------");
         }
         return sb.toString();
+    }
+
+    // Get Objects from JSON using parsing library
+    public static User[] getUsersFromResponse(String response) {
+        JSONObject jsonObject = new JSONObject(response);
+        JSONArray dataArray = jsonObject.getJSONArray("data");
+        User[] users = new User[dataArray.length()];
+
+        for (int i = 0; i < dataArray.length(); i++) {
+            int id = dataArray.getJSONObject(i).getInt("id");
+            String email = dataArray.getJSONObject(i).getString("email");
+            String firstName = dataArray.getJSONObject(i).getString("first_name");
+            String lastName = dataArray.getJSONObject(i).getString("last_name");
+            String name = firstName + " " + lastName;
+            users[i] = new User(id, name, email);
+        }
+
+        return users;
     }
 
     // Prepare the report and write to a file - sample.txt
