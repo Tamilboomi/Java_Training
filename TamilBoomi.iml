@@ -10,16 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/json_library.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/mysql-connector-java-8.0.20.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/json-20190722.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
